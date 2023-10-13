@@ -32,8 +32,8 @@ func main() {
 	if *saveToFile {
 		// Save report in markdown format to file.
 		err = ioutil.WriteFile(
-			"c4udit-report.md",
-			[]byte(report.Markdown()),
+			"c4audit-report.md",
+			[]byte(report.Markdown("c4audit", "1.0.0")),
 			0777,
 		)
 		if err != nil {
