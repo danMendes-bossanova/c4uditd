@@ -33,7 +33,7 @@ func main() {
 		// Save report in markdown format to file.
 		err = ioutil.WriteFile(
 			"c4audit-report.md",
-			[]byte(report.Markdown("c4audit", "1.0.0")),
+			[]byte(report.Markdown("c4audit", "Dastandan")),
 			0777,
 		)
 		if err != nil {
