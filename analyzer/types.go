@@ -73,11 +73,15 @@ func (r Report) Markdown() string {
 		severityCounts[issue.Severity]++
 	}
 
+	// Add table header
+	buf.WriteString("| Severity | Count |\n")
+	buf.WriteString("| -------- | ----- |\n")
+
 	// Add summary for each severity level
 	for i := GASOP; i <= HIGH; i++ {
 		count := severityCounts[i]
 		if count > 0 {
-			buf.WriteString(fmt.Sprintf("- %s: %d\n", i.String(), count))
+			buf.WriteString(fmt.Sprintf("| %s | %d |\n", i.String(), count))
 		}
 	}
 
