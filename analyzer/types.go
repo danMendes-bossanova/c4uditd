@@ -40,11 +40,13 @@ const (
 	GASOP Severity = iota
 	NC
 	LOW
+	MEDIUM
+	HIGH
 )
 
 // Markdown returns the report as string in markdown style.
 func (r Report) Markdown() string {
-	const c4uditRepoLink = "https://github.com/byterocket/c4udit"
+	const c4uditRepoLink = "https://github.com/giovannarevitoroz/c4uditg"
 	// Issue output in Code4Rena format:
 	// ### {{ issue.Title }}
 	//
@@ -149,5 +151,7 @@ func (s Severity) String() string {
 		"Gas Optimization",
 		"Non-Critical",
 		"Low Risk",
+		"Medium Risk",
+		"High Risk",
 	}[s]
 }

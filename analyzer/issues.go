@@ -2,7 +2,8 @@ package analyzer
 
 // AllIssues returns the list of all issues.
 func AllIssues() []Issue {
-	return append(GasOpIssues(), LowRiskIssues()...)
+	return append(append(append(GasOpIssues(), LowRiskIssues()...), MediumRiskIssues()...), HighRiskIssues()...)
+	// return append(GasOpIssues(), LowRiskIssues(), MediumRiskIssues(), HighRiskIssues()...)
 }
 
 // GasOpIssues returns the list of all gas optimization issues.
@@ -13,7 +14,7 @@ func GasOpIssues() []Issue {
 			"G001",
 			GASOP,
 			"Don't Initialize Variables with Default Value",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g001---dont-initialize-variables-with-default-value",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g001---dont-initialize-variables-with-default-value",
 			`(uint[0-9]*[[:blank:]][a-z,A-Z,0-9]*.?=.?0;)|(bool.[a-z,A-Z,0-9]*.?=.?false;)`,
 		},
 		// G002 - Cache Array Length Outside of Loop
@@ -21,7 +22,7 @@ func GasOpIssues() []Issue {
 			"G002",
 			GASOP,
 			"Cache Array Length Outside of Loop",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g002---cache-array-length-outside-of-loop",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g002---cache-array-length-outside-of-loop",
 			".length",
 		},
 		// G003 - Use != 0 instead of > 0 for Unsigned Integer Comparison
@@ -29,7 +30,7 @@ func GasOpIssues() []Issue {
 			"G003",
 			GASOP,
 			"Use != 0 instead of > 0 for Unsigned Integer Comparison",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g003---use--0-instead-of--0-for-unsigned-integer-comparison",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g003---use--0-instead-of--0-for-unsigned-integer-comparison",
 			"(>0|> 0)",
 		},
 		// G006 - Use immutable for OpenZeppelin AccessControl's Roles Declarations
@@ -37,7 +38,7 @@ func GasOpIssues() []Issue {
 			"G006",
 			GASOP,
 			"Use immutable for OpenZeppelin AccessControl's Roles Declarations",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g006---use-immutable-for-openzeppelin-accesscontrols-roles-declarations",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g006---use-immutable-for-openzeppelin-accesscontrols-roles-declarations",
 			"keccak",
 		},
 		// G007 - Long Revert Strings
@@ -45,7 +46,7 @@ func GasOpIssues() []Issue {
 			"G007",
 			GASOP,
 			"Long Revert Strings",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md#g007---long-revert-strings",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g007---long-revert-strings",
 			"\".{33,}\"", // Anything between "'s with at least 33 characters
 		},
 		// G008 - Use Shift Right/Left instead of Division/Multiplication if possible
@@ -53,7 +54,7 @@ func GasOpIssues() []Issue {
 			"G008",
 			GASOP,
 			"Use Shift Right/Left instead of Division/Multiplication if possible",
-			"https://github.com/byterocket/c4-common-issues/blob/main/0-Gas-Optimizations.md/#g008---use-shift-rightleft-instead-of-divisionmultiplication-if-possible",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/0-Gas-Optimizations.md#g008---use-shift-rightleft-instead-of-divisionmultiplication-if-possible",
 			`(/[2,4,8]|/ [2,4,8]|\*[2,4,8]|\* [2,4,8])`,
 		},
 	}
@@ -67,7 +68,7 @@ func LowRiskIssues() []Issue {
 			"L001",
 			LOW,
 			"Unsafe ERC20 Operation(s)",
-			"https://github.com/byterocket/c4-common-issues/blob/main/2-Low-Risk.md#l001---unsafe-erc20-operations",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/2-Low-Risk.md#l001---unsafe-erc20-operations",
 			`\.transfer\(|\.transferFrom\(|\.approve\(`, // ".tranfer(", ".transferFrom(" or ".approve("
 		},
 		// L003 - Unspecific Compiler Version Pragma
@@ -75,7 +76,7 @@ func LowRiskIssues() []Issue {
 			"L003",
 			LOW,
 			"Unspecific Compiler Version Pragma",
-			"https://github.com/byterocket/c4-common-issues/blob/main/2-Low-Risk.md#l003---unspecific-compiler-version-pragma",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/2-Low-Risk.md#l003---unspecific-compiler-version-pragma",
 			"pragma solidity (\\^|>)", // "pragma solidity ^" or "pragma solidity >"
 		},
 		// L005 - Do not use Deprecated Library Functions
@@ -83,8 +84,93 @@ func LowRiskIssues() []Issue {
 			"L005",
 			LOW,
 			"Do not use Deprecated Library Functions",
-			"https://github.com/byterocket/c4-common-issues/blob/main/2-Low-Risk.md#l005---do-not-use-deprecated-library-functions",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/2-Low-Risk.md#l005---do-not-use-deprecated-library-functions",
 			`_setupRole\(|safeApprove\(`, // _setupRole and safeApprove are common deprecated lib functions
+		},
+	}
+}
+
+// HighRiskIssues returns the list of all high risk issues.
+func HighRiskIssues() []Issue {
+	return []Issue{
+		// H001 - Unsafe ERC20 Operation(s)
+		{
+			"H001",
+			HIGH,
+			"Unsafe ERC20 Operation(s)",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h001---unsafe-erc20-operations",
+			`\.transfer\(|\.transferFrom\(|\.approve\(`,
+		},
+		// H002 - Loans can be rolled an unlimited number of times
+		{
+			"H002",
+			HIGH,
+			"Loans can be rolled an unlimited number of times",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h002---loans-can-be-rolled-an-unlimited-number-of-times",
+			"toggleRoll() can't be used to stop rolls if they're all done in a single transaction.", // "pragma solidity ^" or "pragma solidity >"
+		},
+		// H003 - Fully repaying a loan will result in debt payment being lost
+		{
+			"H003",
+			HIGH,
+			"Fully repaying a loan will result in debt payment being lost",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h003---fully-repaying-a-loan-will-result-in-debt-payment-being-lost",
+			`_loan\(|loan.lender\Cooler#repay(`,
+		},
+		// H004 - Lender force Loan become default
+		{
+			"H004",
+			HIGH,
+			"Lender force Loan become default",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h004---lender-force-loan-become-default",
+			`repay()`,
+		},
+	}
+}
+
+// MediumRiskIssues returns the list of all medium risk issues.
+func MediumRiskIssues() []Issue {
+	return []Issue{
+		// M001 - Cooler.roll() wouldn't work as expected when newCollateral = 0
+
+		{
+			"M001",
+			MEDIUM,
+			"Cooler.roll() wouldn't work as expected when newCollateral = 0",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m001---coolerroll-wouldnt-work-as-expected-when-newcollateral--0",
+			`roll()/newCollateral = 0/newCollateral = 0./req.duration`,
+		},
+		// M002 - Loan is rollable by default
+		{
+			"M002",
+			MEDIUM,
+			"Loan is rollable by default",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m002---loan-is-rollable-by-default",
+			"rollable",
+		},
+		// H003 - Repaying loans with small amounts of debt tokens can lead to underflowing in the roll function
+		{
+			"M003",
+			MEDIUM,
+			"Repaying loans with small amounts of debt tokens can lead to underflowing in the roll function",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m003---repaying-loans-with-small-amounts-of-debt-tokens-can-lead-to-underflowing-in-the-roll-function",
+			`roll/newCollateral/repay`,
+		},
+		// M004 - Dust amounts can cause payments to fail, leading to default
+		{
+			"M004",
+			MEDIUM,
+			"Dust amounts can cause payments to fail, leading to default",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m004---dust-amounts-can-cause-payments-to-fail-leading-to-default",
+			`loan.amount -= repai`,
+		},
+		// M005 - DAI/gOHM exchange rate may be stale
+		{
+			"M005",
+			MEDIUM,
+			"DAI/gOHM exchange rate may be stale",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m005---daigohm-exchange-rate-may-be-stale",
+			`maxLTC`,
 		},
 	}
 }
