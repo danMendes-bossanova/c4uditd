@@ -64,6 +64,25 @@ func (r Report) Markdown() string {
 	buf.WriteString("# c4udit Report\n")
 	buf.WriteString("\n")
 
+	buf.WriteString("## Summary\n")
+	buf.WriteString("\n")
+
+	// Count issues by severity
+	severityCounts := map[Severity]int{}
+	for _, issue := range r.Issues {
+		severityCounts[issue.Severity]++
+	}
+
+	// Add summary for each severity level
+	for i := GASOP; i <= HIGH; i++ {
+		count := severityCounts[i]
+		if count > 0 {
+			buf.WriteString(fmt.Sprintf("- %s: %d\n", i.String(), count))
+		}
+	}
+
+	buf.WriteString("\n")
+
 	buf.WriteString("## Files analyzed\n")
 	for _, f := range r.FilesAnalyzed {
 		buf.WriteString("- " + f + "\n")
