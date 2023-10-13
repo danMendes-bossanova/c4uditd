@@ -46,7 +46,7 @@ const (
 
 // Markdown returns the report as string in markdown style.
 func (r Report) Markdown() string {
-	const c4uditRepoLink = "https://github.com/giovannarevitoroz/c4uditg"
+	const c4uditRepoLink = "https://github.com/danMendes-bossanova/c4uditd"
 	// Issue output in Code4Rena format:
 	// ### {{ issue.Title }}
 	//
