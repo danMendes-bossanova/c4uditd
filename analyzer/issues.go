@@ -125,6 +125,30 @@ func HighRiskIssues() []Issue {
 			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h004---lender-force-loan-become-default",
 			`repay()`,
 		},
+		// H005 - StakedCitadel depositors can be attacked by the first depositor with depressing of vault token denomination
+		{
+			"H005",
+			HIGH,
+			"StakedCitadel depositors can be attacked by the first depositor with depressing of vault token denomination",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h005---stakedcitadel-depositors-can-be-attacked-by-the-first-depositor-with-depressing-of-vault-token-denomination",
+			`require(_controller != address(`,
+		},
+		// H006 - Truncation in OrderValidator can lead to resetting the fill and selling more tokens
+		{
+			"H006",
+			HIGH,
+			"Truncation in OrderValidator can lead to resetting the fill and selling more tokens",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h006---truncation-in-ordervalidator-can-lead-to-resetting-the-fill-and-selling-more-tokens",
+			` require(numerator <= type(`,
+		},
+		// H007 - yVault: First depositor can break minting of shares
+		{
+			"H007",
+			HIGH,
+			"yVault: First depositor can break minting of shares",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h007---yvault-first-depositor-can-break-minting-of-shares",
+			`require(_shares != 0, "zero shares minted");`,
+		},
 	}
 }
 
@@ -137,7 +161,7 @@ func MediumRiskIssues() []Issue {
 			"M001",
 			MEDIUM,
 			"Cooler.roll() wouldn't work as expected when newCollateral = 0",
-			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/4-Medium-Risk.md#m001---coolerroll-wouldnt-work-as-expected-when-newcollateral--0",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h007---setting-new-controller-can-break-yvaultlpfarming",
 			`roll()/newCollateral = 0/newCollateral = 0./req.duration`,
 		},
 		// M002 - Loan is rollable by default
