@@ -149,6 +149,86 @@ func HighRiskIssues() []Issue {
 			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h007---yvault-first-depositor-can-break-minting-of-shares",
 			`require(_shares != 0, "zero shares minted");`,
 		},
+		// H008 - Reentrancy issue in yVault.deposit
+		{
+			"H008",
+			HIGH,
+			"Reentrancy issue in yVault.deposit",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h008---reentrancy-issue-in-yvaultdeposit",
+			`The safeTransferFrom should be the last call in deposit.`,
+		},
+		// H009 - Setting new controller can break YVaultLPFarming
+		{
+			"H009",
+			HIGH,
+			"Setting new controller can break YVaultLPFarming",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h009---setting-new-controller-can-break-yvaultlpfarming",
+			`require(_controller != address(0), "INVALID_CONTROLLER");`,
+		},
+		// H010 - Can force borrower to pay huge interest
+		{
+			"H010",
+			HIGH,
+			"Can force borrower to pay huge interest",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h010---can-force-borrower-to-pay-huge-interest",
+			`The loan amount should not have min amount semantics.`,
+		},
+		// H011 - Oracle price does not compound
+		{
+			"H011",
+			HIGH,
+			"Oracle price does not compound",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h011---oracle-price-does-not-compound",
+			`Calling getCurrentOraclePrice() now would return 1.0 again as timeDelta (and priceDelta) is zero: oraclePriceInt + priceDelta = oraclePriceInt = 1.0.`,
+		},
+		// H012 - Withdrawal delay can be circumvented
+		{
+			"H012",
+			HIGH,
+			"Withdrawal delay can be circumvented",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h012---withdrawal-delay-can-be-circumvented",
+			`it.only("will cause 0 share issuance", async () => {`,
+		},
+		// H013 - First depositor can break minting of shares
+		{
+			"H013",
+			HIGH,
+			"First depositor can break minting of shares",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h013---first-depositor-can-break-minting-of-shares",
+			`it("will cause 0 share issuance", async () => {`,
+		},
+		// H014 - Can deposit native token for free and steal funds
+		{
+			"H014",
+			HIGH,
+			"Can deposit native token for free and steal funds",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h014---can-deposit-native-token-for-free-and-steal-funds",
+			`Check tokenAddress != NATIVE in depositErc20.`,
+		},
+		// H015 - WWrong formula when add fee incentivePool can lead to loss of funds
+		{
+			"H015",
+			HIGH,
+			"WWrong formula when add fee incentivePool can lead to loss of funds",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h015---wwrong-formula-when-add-fee-incentivepool-can-lead-to-loss-of-funds",
+			`incentivePool[tokenAddress] += (amount * (transferFeePerc - tokenManager.getTokensInfo(tokenAddress).equilibriumFee)) / BASE_DIVISOR;`,
+		},
+		// H016 - Spend limit on owner can be bypassed
+		{
+			"H016",
+			HIGH,
+			"Spend limit on owner can be bypassed",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h016---spend-limit-on-owner-can-be-bypassed",
+			`After successful spend, the config.spend_limit should be decreased by the amount spend`,
+		},
+		// H017 - Reentrancy in MessageProxyForSchain leads to replay attacks
+		{
+			"H017",
+			HIGH,
+			"Reentrancy in MessageProxyForSchain leads to replay attacks",
+			"https://github.com/danMendes-bossanova/c4-common-issuesd/blob/main/3-High-Risk.md#h017---reentrancy-in-messageproxyforschain-leads-to-replay-attacks",
+			`for (uint256 i = 0; i < messages.length; i++) {`,
+		},
 	}
 }
 
